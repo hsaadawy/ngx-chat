@@ -1,17 +1,17 @@
 {
-  "name": "@pazznetwork/ngx-chat",
+  "name": "@hsaadawy/ngx-chat",
   "version": "0.12.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng build @pazznetwork/ngx-chat && ng serve",
+    "start": "ng build @hsaadawy/ngx-chat && ng serve",
     "clean": "rimraf out-tsc && rimraf dist && rimraf coverage && rimraf documentation",
     "compile": "tsc -p tsconfig.lib.json --noEmit --noImplicitAny",
-    "build-lib": "npm run clean && ng build @pazznetwork/ngx-chat --configuration production && node fix-build-result.js",
+    "build-lib": "npm run clean && ng build @hsaadawy/ngx-chat --configuration production && node fix-build-result.js",
     "build": "npm run build-lib && ng build --configuration production --stats-json",
-    "test": "ng test @pazznetwork/ngx-chat --watch",
-    "test:once": "ng test @pazznetwork/ngx-chat --code-coverage --watch=false",
-    "lint": "ng lint @pazznetwork/ngx-chat",
+    "test": "ng test @hsaadawy/ngx-chat --watch",
+    "test:once": "ng test @hsaadawy/ngx-chat --code-coverage --watch=false",
+    "lint": "ng lint @hsaadawy/ngx-chat",
     "e2e": "ng e2e",
     "bundle-report": "npm run build && webpack-bundle-analyzer dist/ngx-chat/stats-es5.json",
     "documentation": "compodoc --tsconfig tsconfig.lib.json",
@@ -86,11 +86,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/pazznetwork/ngx-chat.git"
+    "url": "git://github.com/hsaadawy/ngx-chat.git"
   },
-  "homepage": "https://github.com/pazznetwork/ngx-chat",
+  "homepage": "https://github.com/hsaadawy/ngx-chat",
   "bugs": {
-    "url": "https://github.com/pazznetwork/ngx-chat/issues"
+    "url": "https://github.com/hsaadawy/ngx-chat/issues"
   },
   "sideEffects": false,
   "husky": {
