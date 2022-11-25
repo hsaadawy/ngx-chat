@@ -405,7 +405,7 @@ export class MultiUserChatPlugin extends AbstractXmppPlugin {
         return result;
     }
 
-    private extractRoomSummariesFromResponse(iq: IqResponseStanza): RoomSummary[] {
+    private extractRoomSummariesFromResponse(iq: IqResponseStanza): RoomSummary[]|any {
         return iq
             .getChild('query', ServiceDiscoveryPlugin.DISCO_ITEMS)
             ?.getChildren('item')
