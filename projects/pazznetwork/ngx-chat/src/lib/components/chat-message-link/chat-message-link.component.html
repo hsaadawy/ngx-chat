@@ -1,1 +1,2 @@
-<a href="{{link}}" target="_blank" rel="noopener" (click)="onClick($event)">{{text}}</a>
+<a *ngIf="link && !link.includes('mp3')" href="{{link}}" target="_blank" rel="noopener"
+    (click)="onClick($event)">{{text}}</a>
