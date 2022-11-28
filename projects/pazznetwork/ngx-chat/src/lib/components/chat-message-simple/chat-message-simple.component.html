@@ -8,14 +8,25 @@
             <ng-content></ng-content>
         </div>
     </div>
-    <div class="chat-message-image-wrapper" *ngIf="imageLink && !imageLink.includes('mp3')">
+
+    <div class="chat-message-image-wrapper"
+        *ngIf="imageLink && !imageLink.includes('mp3') &&  !imageLink.includes('ogg') &&  !imageLink.includes('mp4')">
         <img class="chat-message-image" [src]="imageLink" />
-
-
     </div>
-    <audio controls *ngIf="imageLink && imageLink.includes('mp3')">
+
+    <audio class="audio-custome" controls *ngIf="imageLink && imageLink.includes('mp3')">
         <source [src]="imageLink" type="audio/mpeg">
     </audio>
+
+    <div class="chat-message-image-wrapper"
+        *ngIf="imageLink && imageLink.includes('mp4') || imageLink && imageLink.includes('ogg')">
+        <video style="width: 100% ;" class="chat-message-image" controls>
+            <source [src]="imageLink" type="video/mp4">
+        </video>
+    </div>
+
+
+
     <div class="chat-message-footer" *ngIf="!footerHidden">
         <small title="{{nick}}" class="chat-message-name">
             {{nick}}
