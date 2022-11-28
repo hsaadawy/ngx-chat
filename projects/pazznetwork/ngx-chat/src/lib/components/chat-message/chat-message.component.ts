@@ -74,7 +74,10 @@ export class ChatMessageComponent implements OnInit {
                 const contentType = headRequest.headers.get('Content-Type');
                 const isImage = contentType && contentType.startsWith('image');
                 const isAudio = url.includes('mp3')
-                if (isImage || isAudio) {
+                const isVideo = url.includes('ogg') || url.includes('mp4')
+
+
+                if (isImage || isAudio || isVideo) {
                     this.imageLink = url;
                     break;
                 }
