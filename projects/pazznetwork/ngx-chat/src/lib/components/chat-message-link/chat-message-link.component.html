@@ -1,14 +1,13 @@
-<a *ngIf="link && !link.includes('mp3') ||
-          link && !link.includes('mp4') ||
-          link && !link.includes('ogg') ||
-          link && !link.includes('png') ||
-          link && !link.includes('MOV') ||
-          link && !link.includes('WMV') ||
-          link && !link.includes('AVI') ||
-          link && !link.includes('AVCHD') ||
-          link && !link.includes('FLV') ||
-          link && !link.includes('F4V') ||
-          link && !link.includes('SWF') ||
-          link && !link.includes('MKV') ||
-          link && !link.includes('jpg')" href="{{link}}" target="_blank" rel="noopener"
-    (click)="onClick($event)">{{text}}</a>
+<a *ngIf="link && !link.includes('mp3') &&
+ !link.includes('mp4') &&
+ !link.includes('ogg') &&
+ !link.includes('png') &&
+ !link.includes('MOV') &&
+ !link.includes('WMV') &&
+ !link.includes('AVI') &&
+ !link.includes('AVCHD') &&
+ !link.includes('FLV') &&
+ !link.includes('F4V') &&
+ !link.includes('SWF') &&
+ !link.includes('MKV') &&
+ !link.includes('jpg')" href="{{link}}" target="_blank" rel="noopener" (click)="onClick($event)">{{text}}</a>
