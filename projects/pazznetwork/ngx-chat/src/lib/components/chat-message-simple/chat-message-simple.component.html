@@ -18,10 +18,19 @@
         <source [src]="imageLink" type="audio/mpeg">
     </audio>
 
-    <div class="chat-message-image-wrapper"
-        *ngIf="imageLink && imageLink.includes('mp4') || imageLink && imageLink.includes('ogg')">
+    <div class="chat-message-image-wrapper" *ngIf="
+          imageLink && imageLink.includes('mp4') ||
+          imageLink && imageLink.includes('ogg') ||
+          imageLink && imageLink.includes('MOV') ||
+          imageLink && imageLink.includes('WMV') ||
+          imageLink && imageLink.includes('AVI') ||
+          imageLink && imageLink.includes('AVCHD') ||
+          imageLink && imageLink.includes('FLV') ||
+          imageLink && imageLink.includes('F4V') ||
+          imageLink && imageLink.includes('SWF') ||
+          imageLink && imageLink.includes('MKV') ">
         <video style="width: 100% ;" class="chat-message-image" controls>
-            <source [src]="imageLink" type="video/mp4">
+            <source [src]="imageLink">
         </video>
     </div>
 
