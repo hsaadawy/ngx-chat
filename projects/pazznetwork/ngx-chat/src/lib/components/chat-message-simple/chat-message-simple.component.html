@@ -5,13 +5,16 @@
                 [imageUrl]="avatar"></ngx-chat-avatar>
         </div>
         <div class="chat-message-text">
+            
             <ng-content></ng-content>
         </div>
     </div>
 
     <div class="chat-message-image-wrapper"
         *ngIf="imageLink && !imageLink.includes('mp3') &&  !imageLink.includes('ogg') &&  !imageLink.includes('mp4')">
-        <img class="chat-message-image" [src]="imageLink" />
+        <a [href]="imageLink" target="_blank">
+        <img style="width: 200px; height: 200px;" class="chat-message-image" [src]="imageLink" />
+    </a>
     </div>
 
     <audio class="audio-custome" controls *ngIf="imageLink && imageLink.includes('mp3')">

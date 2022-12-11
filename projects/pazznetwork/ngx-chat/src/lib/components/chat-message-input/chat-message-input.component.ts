@@ -11,6 +11,8 @@ export class ChatMessageInputComponent implements OnInit {
 
     @Input()
     public recipient: Recipient;
+    @Input()
+    public replyMessage: string;
 
     @Output()
     public messageSent = new EventEmitter<void>();

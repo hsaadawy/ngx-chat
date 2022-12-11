@@ -40,5 +40,6 @@ export class ChatMessageSimpleComponent {
     nick?: string;
 
     MessageState = MessageState;
+    
 
 }

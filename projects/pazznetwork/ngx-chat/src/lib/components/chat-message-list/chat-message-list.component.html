@@ -13,7 +13,8 @@
                 [nick]="message.direction === Direction.in ? getOrCreateContactWithFullJid(message).name : ''"
                 [avatar]="getOrCreateContactWithFullJid(message).avatar"
                 [message]="message"
-                [showAvatars]="showAvatars">
+                [showAvatars]="showAvatars"
+                >
         </ngx-chat-message>
     </ng-container>
 

@@ -80,6 +80,7 @@ export class Room {
     readonly roomJid: JID;
     occupantJid: JID;
     name: string;
+    nick:string;
     avatar = dummyAvatarRoom;
     metadata: RoomMetadata = {};
     private messageStore: MessageStore<RoomMessage>;
@@ -91,6 +92,7 @@ export class Room {
     constructor(occupantJid: JID, logService: LogService, name?: string | undefined) {
         this.roomJid = occupantJid.bare();
         this.name = name ?? occupantJid.bare().toString();
+        this.nick = name ?? occupantJid.bare().toString();
         this.occupantJid = occupantJid;
         this.messageStore = new MessageStore<RoomMessage>(logService);
     }

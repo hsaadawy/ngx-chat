@@ -65,8 +65,10 @@ export class Contact {
      */
     constructor(jidPlain: string,
                 public name: string,
+                public nick:string,
                 logService?: LogService,
-                avatar?: string) {
+                avatar?: string,
+                ) {
         if (avatar) {
             this.avatar = avatar;
         }

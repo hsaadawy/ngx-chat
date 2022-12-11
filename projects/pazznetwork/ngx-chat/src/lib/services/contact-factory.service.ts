@@ -13,7 +13,7 @@ export class ContactFactoryService {
         if (!name) {
             name = jidPlain;
         }
-        return new Contact(jidPlain, name, this.logService, avatar);
+        return new Contact(jidPlain, name, avatar);
     }
 
 }

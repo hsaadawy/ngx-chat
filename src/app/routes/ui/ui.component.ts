@@ -21,7 +21,7 @@ export class UiComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        this.contact = new Contact(this.otherContactJid.toString(), 'chat partner name');
+        this.contact = new Contact(this.otherContactJid.toString(),null, 'chat partner name');
         this.room = new Room(this.myJid, null);
 
         this.add({

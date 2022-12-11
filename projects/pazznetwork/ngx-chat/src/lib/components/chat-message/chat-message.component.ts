@@ -130,4 +130,11 @@ export class ChatMessageComponent implements OnInit {
         }
         return undefined;
     }
+    reply(message:any)
+    {
+console.log(message);
+this.chatService.sendMessage(this.contact,message);
+       // this.message = '';
+        //this.messageSent.emit();
+    }
 }
