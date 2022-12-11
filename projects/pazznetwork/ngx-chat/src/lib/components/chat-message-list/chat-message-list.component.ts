@@ -247,7 +247,7 @@ export class ChatMessageListComponent implements OnInit, OnDestroy, OnChanges, A
     }
 
     getOrCreateContactWithFullJid(message: Message | RoomMessage): Recipient {
-        debugger;
+        
         if (this.recipient.recipientType === 'contact') {
             // this is not a multi user chat, just use recipient as contact
             return this.recipient;

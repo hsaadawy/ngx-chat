@@ -7,6 +7,7 @@ import { MessageStatePlugin, StateDate } from '../../services/adapters/xmpp/plug
 import { XmppChatAdapter } from '../../services/adapters/xmpp/xmpp-chat-adapter.service';
 import { ChatContactClickHandler, CONTACT_CLICK_HANDLER_TOKEN } from '../../services/chat-contact-click-handler';
 import { CHAT_SERVICE_TOKEN, ChatService } from '../../services/chat-service';
+import { ReplyMessageEvent } from '../../events/reply-message-event';
 
 export const MAX_IMAGE_SIZE = 250 * 1024;
 
@@ -45,7 +46,8 @@ export class ChatMessageComponent implements OnInit {
     constructor(
         @Inject(CHAT_SERVICE_TOKEN) public chatService: ChatService,
         private httpClient: HttpClient,
-        @Inject(CONTACT_CLICK_HANDLER_TOKEN) @Optional() public contactClickHandler: ChatContactClickHandler,
+        @Inject(ReplyMessageEvent) public replyMessageEvent: ReplyMessageEvent,
+        @Inject(CONTACT_CLICK_HANDLER_TOKEN) @Optional() public contactClickHandler: ChatContactClickHandler
     ) {
         this.messageStatePlugin = this.chatService.getPlugin(MessageStatePlugin);
     }
@@ -133,8 +135,7 @@ export class ChatMessageComponent implements OnInit {
     reply(message:any)
     {
 console.log(message);
-this.chatService.sendMessage(this.contact,message);
-       // this.message = '';
-        //this.messageSent.emit();
+this.replyMessageEvent.changeReplyMessage(message);
+
     }
 }

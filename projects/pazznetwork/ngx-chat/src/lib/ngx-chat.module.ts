@@ -20,6 +20,7 @@ import { RosterListComponent } from './components/roster-list/roster-list.compon
 import { RosterRecipientComponent } from './components/roster-recipient/roster-recipient.component';
 import { IntersectionObserverDirective } from './directives/intersection-observer.directive';
 import { LinksDirective } from './directives/links.directive';
+import { ReplyMessageEvent } from './events/reply-message-event';
 import { BlockPlugin } from './services/adapters/xmpp/plugins/block.plugin';
 import { BookmarkPlugin } from './services/adapters/xmpp/plugins/bookmark.plugin';
 import { EntityTimePlugin } from './services/adapters/xmpp/plugins/entity-time.plugin';
@@ -73,7 +74,8 @@ import { LogService } from './services/log.service';
         ChatWindowFrameComponent,
         ChatVideoWindowComponent,
         ChatAvatarComponent,
-        RosterRecipientComponent,
+        RosterRecipientComponent
+        
     ],
     exports: [
         ChatComponent,
@@ -95,6 +97,7 @@ export class NgxChatModule {
                 ChatListStateService,
                 ChatMessageListRegistryService,
                 ContactFactoryService,
+                ReplyMessageEvent,
                 LogService,
                 XmppChatConnectionService,
                 XmppClientFactoryService,
