@@ -1,8 +1,20 @@
-<textarea class="chat-input"
-          #chatInput
-          [(ngModel)]="message"
-          (keydown.enter)="onSendMessage($event)"
-          cdkTextareaAutosize
-          cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="5"
-          placeholder="{{chatService.translations.placeholder}}"></textarea>
+<div *ngIf="messageItem!=''" style="    background: #8e89896b;
+color: #fff;
+position: relative;
+top: -9px;
+width: 105%;
+left: -3%;
+padding: 4px 6px;
+border-radius: 4px 4px 0 0;">
+    {{messageItem}}
+
+    <i class="fas fa-times" style="font-family: 'Font Awesome 5 Free' !important;float: right;padding: 0 5px;"
+        (click)="messageItem=''" aria-hidden="true"></i>
+
+</div>
+
+<textarea class="chat-input" #chatInput [(ngModel)]="message" (keydown.enter)="onSendMessage($event)"
+    cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+    placeholder="{{chatService.translations.placeholder}}"></textarea>
+
+

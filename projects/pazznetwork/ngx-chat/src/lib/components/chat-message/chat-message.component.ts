@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, Input, OnInit, Optional } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { Contact } from '../../core/contact';
 import { Direction, Message, MessageState } from '../../core/message';
 import { extractUrls } from '../../core/utils-links';
@@ -23,7 +23,7 @@ export class ChatMessageComponent implements OnInit {
 
     @Input()
     avatar?: string;
-
+    text;
     @Input()
     message: Message;
 
@@ -41,11 +41,16 @@ export class ChatMessageComponent implements OnInit {
 
     Direction = Direction;
 
+
+
+    showMenu = false
+
     private readonly messageStatePlugin: MessageStatePlugin;
 
     constructor(
         @Inject(CHAT_SERVICE_TOKEN) public chatService: ChatService,
         private httpClient: HttpClient,
+        private eRef: ElementRef,
         @Inject(ReplyMessageEvent) public replyMessageEvent: ReplyMessageEvent,
         @Inject(CONTACT_CLICK_HANDLER_TOKEN) @Optional() public contactClickHandler: ChatContactClickHandler
     ) {
@@ -132,10 +137,9 @@ export class ChatMessageComponent implements OnInit {
         }
         return undefined;
     }
-    reply(message:any)
-    {
-console.log(message);
-this.replyMessageEvent.changeReplyMessage(message);
+    reply(message: any) {
+        console.log(message);
+        this.replyMessageEvent.changeReplyMessage(message);
 
     }
 }

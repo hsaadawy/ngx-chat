@@ -24,35 +24,41 @@ export class ChatMessageInputComponent implements OnInit {
   @Output()
   public messageSent = new EventEmitter<void>();
 
-  
+
   public message = "";
+  public messageItem = "";
 
   @ViewChild("chatInput")
   chatInput: ElementRef;
 
   constructor(@Inject(CHAT_SERVICE_TOKEN) public chatService: ChatService,
-  
-  @Inject(ReplyMessageEvent) public replyMessageEvent: ReplyMessageEvent) {
+
+    @Inject(ReplyMessageEvent) public replyMessageEvent: ReplyMessageEvent) {
     debugger;
-    this.replyMessageEvent.replyMessageEmitter$.subscribe((item: string) =>
-    this.message = item
-    
-    
-   )
+    this.replyMessageEvent.replyMessageEmitter$.subscribe((item: string) => {
+      // this.message = item
+      this.messageItem = item
+    }
+
+    )
   }
 
   ngOnInit() {
-   
+
   }
 
   onSendMessage($event?: KeyboardEvent) {
+
     if ($event) {
       $event.preventDefault();
     }
-      this.chatService.sendMessage(this.recipient, this.message);
-      this.message = "";
-      this.messageSent.emit();
-    
+    debugger
+    this.chatService.sendMessage(this.recipient,
+      `<div  class="messageItem">${this.messageItem}</div>` + this.message);
+    this.messageItem = ''
+    this.message = "";
+    this.messageSent.emit();
+
   }
 
   focus() {
