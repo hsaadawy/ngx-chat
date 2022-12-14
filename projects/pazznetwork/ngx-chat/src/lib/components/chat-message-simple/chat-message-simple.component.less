@@ -1,6 +1,6 @@
 @msg-avatar-size: 2em;
 @msg-full-spacing: 0.5em;
-@msg-half-spacing: calc(@msg-full-spacing / 2);
+@msg-half-spacing: calc(@msg-full-spacing / 2) 0;
 
 .chat-message-avatar {
   flex-shrink: 0;
@@ -96,7 +96,14 @@
 }
 
 .audio-custome {
-  width: 260px;
-  zoom: 0.8;
+  width: 210px;
   height: 40px;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  font-size: 14px !important;
+}
+
+audio::-webkit-media-controls-time-remaining-display {
+  display: none;
 }

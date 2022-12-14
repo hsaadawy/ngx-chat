@@ -6,8 +6,8 @@ width: 105%;
 left: -3%;
 padding: 4px 6px;
 border-radius: 4px 4px 0 0;">
-    {{messageItem}}
 
+    <div [innerHTML]="messageItem"></div>
     <i class="fas fa-times" style="font-family: 'Font Awesome 5 Free' !important;float: right;padding: 0 5px;"
         (click)="messageItem=''" aria-hidden="true"></i>
 
@@ -16,5 +16,3 @@ border-radius: 4px 4px 0 0;">
 <textarea class="chat-input" #chatInput [(ngModel)]="message" (keydown.enter)="onSendMessage($event)"
     cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
     placeholder="{{chatService.translations.placeholder}}"></textarea>
-
-
