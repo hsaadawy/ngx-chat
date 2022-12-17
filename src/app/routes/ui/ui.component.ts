@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Contact, Direction, dummyAvatarContact, MessageState, Room } from '@pazznetwork/ngx-chat';
 import { jid as parseJid } from '@xmpp/client';
@@ -9,7 +10,7 @@ import { JID } from '@xmpp/jid';
     styleUrls: ['./ui.component.less'],
 })
 export class UiComponent implements OnInit {
-
+ _httpClient : HttpClient;
     contact: Contact;
     Direction = Direction;
     MessageState = MessageState;
@@ -18,10 +19,12 @@ export class UiComponent implements OnInit {
     private myJid: JID = parseJid('me@example.com');
     private otherContactJid: JID = parseJid('other@example.com');
 
-    constructor() { }
+    constructor(httpClient : HttpClient) { 
+this._httpClient = httpClient
+    }
 
     ngOnInit(): void {
-        this.contact = new Contact(this.otherContactJid.toString(),null, 'chat partner name');
+        this.contact = new Contact(this._httpClient,this.otherContactJid.toString(),null, 'chat partner name');
         this.room = new Room(this.myJid, null);
 
         this.add({

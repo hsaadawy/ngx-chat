@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Contact } from '../core/contact';
 import { LogService } from './log.service';
@@ -5,7 +6,7 @@ import { LogService } from './log.service';
 @Injectable()
 export class ContactFactoryService {
 
-    constructor(private logService: LogService) { }
+    constructor(private logService: LogService,private httpClient : HttpClient) { }
 
     createContact(jidPlain: string,
                   name?: string,
@@ -13,7 +14,7 @@ export class ContactFactoryService {
         if (!name) {
             name = jidPlain;
         }
-        return new Contact(jidPlain, name, avatar);
+        return new Contact(this.httpClient,jidPlain, name, avatar);
     }
 
 }

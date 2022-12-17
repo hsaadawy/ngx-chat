@@ -1,8 +1,10 @@
+import { HttpClient, HttpHandler, HttpHeaders } from "@angular/common/http";
 import { jid as parseJid } from "@xmpp/client";
 import { JID } from "@xmpp/jid";
 import { BehaviorSubject, Subject } from "rxjs";
+import { map } from "rxjs/operators";
 import { LogService } from "../services/log.service";
-import { dummyAvatarContact } from "./contact-avatar";
+import { chatAdminPassword, chatAdminUserName, dummyAvatarContact, getAvatarUrl } from "./contact-avatar";
 import { Message } from "./message";
 import { DateMessagesGroup, MessageStore } from "./message-store";
 import { Presence } from "./presence";
@@ -18,11 +20,17 @@ export type JidToPresence = Map<string, Presence>;
 export class Contact {
   readonly recipientType = "contact";
   public avatar = dummyAvatarContact;
+  public chatUserName = chatAdminUserName;
+  public chatPassword = chatAdminPassword;
+  public avatarUrl = getAvatarUrl;
   public metadata: ContactMetadata = {};
 
   /** use {@link jidBare}, jid resource is only set for chat room contacts */
   public readonly jidFull: JID;
   public readonly jidBare: JID;
+  private _httpClient: HttpClient;
+ // private _httpHandler: HttpHandler;
+
   public readonly presence$ = new BehaviorSubject<Presence>(
     Presence.unavailable
   );
@@ -67,18 +75,47 @@ export class Contact {
    * Do not call directly, use {@link ContactFactoryService#createContact} instead.
    */
   constructor(
+    public httpClinet: HttpClient,
     jidPlain: string,
     public name: string,
     public nick: string,
     logService?: LogService,
     avatar?: string
   ) {
-      this.avatar = "https://picsum.photos/200/300";
-    // if (avatar) {
-    // }
+    this._httpClient = httpClinet;
+    
     const jid = parseJid(jidPlain);
     this.jidFull = jid;
     this.jidBare = jid.bare();
+    let user = {
+      user: jid.local,
+      host: jid.domain,
+      name: "URL",
+    };
+    let credentials= this.chatUserName+":"+this.chatPassword
+    debugger;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization:
+          //"Basic " + btoa("admin@chat.mahamma.com:tDm2R&nMRr47w!dL"),
+          
+          "Basic " + btoa(credentials),
+      }),
+    };
+
+     this._httpClient.post<any>(
+      this.avatarUrl,
+        user,
+        httpOptions
+      )
+      .subscribe((result:any) => {
+        debugger
+        this.avatar =result.content;
+      });
+
+    // this.avatar ="https://picsum.photos/200/300";
+
     this.messageStore = new MessageStore(logService);
   }
 
@@ -136,4 +173,5 @@ export class Contact {
 
     return result;
   }
+  
 }
