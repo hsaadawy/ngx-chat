@@ -32,7 +32,7 @@ import { ChatMessageListComponent } from "../chat-message-list/chat-message-list
 export class ChatWindowComponent implements OnInit, OnDestroy {
   @Input()
   public chatWindowState: ChatWindowState;
-
+  ReplyString = '';
   @ViewChild(ChatMessageInputComponent)
   private readonly messageInput: ChatMessageInputComponent;
 
@@ -109,6 +109,10 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
       $event.stopPropagation();
       this.contactClickHandler.onClick(this.chatWindowState.recipient);
     }
+  }
+
+  newReply(e) {
+    this.ReplyString = e
   }
 }
 

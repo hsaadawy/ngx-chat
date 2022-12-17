@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, HostListener, Inject, Input, OnInit, Optional, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import { Contact } from '../../core/contact';
 import { Direction, Message, MessageState } from '../../core/message';
 import { extractUrls } from '../../core/utils-links';
@@ -17,6 +17,10 @@ export const MAX_IMAGE_SIZE = 250 * 1024;
     styleUrls: ['./chat-message.component.less']
 })
 export class ChatMessageComponent implements OnInit {
+
+
+    @Output()
+    public ReplySent = new EventEmitter<void>();
 
     @Input()
     showAvatars: boolean;
@@ -139,7 +143,8 @@ export class ChatMessageComponent implements OnInit {
     }
     reply(message: any) {
         console.log(message);
-        this.replyMessageEvent.changeReplyMessage(message);
+        // this.replyMessageEvent.changeReplyMessage(message);
+        this.ReplySent.emit(message);
 
     }
 }
