@@ -4,7 +4,7 @@ top: 10px;
 display: inline-block;" class="showMenuposition">
 
     <i style="
-color: #88898b;" (click)="showMenu=!showMenu" class="fa fa-ellipsis-v" aria-hidden="true"></i>
+color: #88898b;"  (click)="showMenu=!showMenu" class="fa fa-ellipsis-v" aria-hidden="true"></i>
     <div *ngIf="showMenu" style="    position: absolute;
     top: 15px;
     width: 85px;
@@ -13,9 +13,9 @@ color: #88898b;" (click)="showMenu=!showMenu" class="fa fa-ellipsis-v" aria-hidd
     box-shadow: 0 1px 3px grey;
     padding: 8px;
     z-index: 99;">
-        <span role="button" (click)="reply(message.body);showMenu=false"
+        <span role="button"  *ngIf="message.direction === Direction.in" (click)="reply(message.body);showMenu=false"
             style="display: block;padding: 5px;font-size: 14px;">
-            <i class="fa fa-reply" aria-hidden="true"></i>
+            <i class="fa fa-reply"  aria-hidden="true"></i>
             Reply
         </span>
 
