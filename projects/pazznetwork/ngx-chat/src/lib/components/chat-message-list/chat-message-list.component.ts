@@ -9,7 +9,9 @@ import {
     OnDestroy,
     OnInit,
     Optional,
+    Output,
     QueryList,
+    EventEmitter,
     SimpleChanges,
     ViewChild,
     ViewChildren,
@@ -41,6 +43,8 @@ enum SubscriptionAction {
 })
 export class ChatMessageListComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
+    @Output()
+    public Reply = new EventEmitter<void>();
     @Input()
     recipient: Recipient;
 
@@ -247,7 +251,7 @@ export class ChatMessageListComponent implements OnInit, OnDestroy, OnChanges, A
     }
 
     getOrCreateContactWithFullJid(message: Message | RoomMessage): Recipient {
-        
+
         if (this.recipient.recipientType === 'contact') {
             // this is not a multi user chat, just use recipient as contact
             return this.recipient;
@@ -264,13 +268,18 @@ export class ChatMessageListComponent implements OnInit, OnDestroy, OnChanges, A
             this.chatService.contacts$.next([matchingContact].concat(this.chatService.contacts$.getValue()));
         }
 
-this.chatService.contacts$.getValue().forEach(a=>{
+        this.chatService.contacts$.getValue().forEach(a => {
 
-   if(matchingContact.jidFull.resource===a.jidFull.local)
-   {
-    matchingContact.name=a.name;
-   }
-})
+            if (matchingContact.jidFull.resource === a.jidFull.local) {
+                matchingContact.name = a.name;
+            }
+        })
         return matchingContact;
+    }
+
+
+    sendReply(event) {
+        debugger
+        this.Reply.emit(event)
     }
 }

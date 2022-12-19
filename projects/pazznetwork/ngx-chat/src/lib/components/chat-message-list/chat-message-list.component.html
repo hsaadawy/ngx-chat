@@ -3,18 +3,14 @@
     <div class="chat-messages-start" (ngxChatIntersectionObserver)="onTop$.next($event)"></div>
 
     <ng-container *ngFor="let dateMessagesGroup of recipient.dateMessagesGroups">
-        <div class="chat-messages-date-group">{{dateMessagesGroup.date | date:chatService.translations.dateFormat:undefined:chatService.translations.locale}}</div>
-        <ngx-chat-message
-                *ngFor="let message of dateMessagesGroup.messages"
-                [id]="'message-' + message.id"
-                [class.chat-message--in]="message.direction === Direction.in"
-                [class.chat-message--out]="message.direction === Direction.out"
-                [contact]="getOrCreateContactWithFullJid(message)"
-                [nick]="message.direction === Direction.in ? getOrCreateContactWithFullJid(message).name : ''"
-                [avatar]="getOrCreateContactWithFullJid(message).avatar"
-                [message]="message"
-                [showAvatars]="showAvatars"
-                >
+        <div class="chat-messages-date-group">{{dateMessagesGroup.date |
+            date:chatService.translations.dateFormat:undefined:chatService.translations.locale}}</div>
+        <ngx-chat-message *ngFor="let message of dateMessagesGroup.messages" (ReplySent)="sendReply($event)"
+            [id]="'message-' + message.id" [class.chat-message--in]="message.direction === Direction.in"
+            [class.chat-message--out]="message.direction === Direction.out"
+            [contact]="getOrCreateContactWithFullJid(message)"
+            [nick]="message.direction === Direction.in ? getOrCreateContactWithFullJid(message).name : ''"
+            [avatar]="getOrCreateContactWithFullJid(message).avatar" [message]="message" [showAvatars]="showAvatars">
         </ngx-chat-message>
     </ng-container>
 
@@ -22,36 +18,28 @@
         {{chatService.translations.noMessages}}
     </div>
 
-    <ngx-chat-message-simple
-            [direction]="Direction.in"
-            [avatar]="showAvatars ? recipient.avatar : undefined"
-            [footerHidden]="true"
-            *ngIf="subscriptionActionShown()"
-    >
+    <ngx-chat-message-simple [direction]="Direction.in" [avatar]="showAvatars ? recipient.avatar : undefined"
+        [footerHidden]="true" *ngIf="subscriptionActionShown()">
         <span>
             {{chatService.translations.subscriptionRequestMessage}}
         </span>
         <ul class="chat-presence-subscription-actions">
             <li>
                 <span class="action-disabled"
-                      *ngIf="subscriptionAction === SubscriptionAction.SHOW_BLOCK_ACTIONS"
-                >{{chatService.translations.acceptSubscriptionRequest}}</span>
+                    *ngIf="subscriptionAction === SubscriptionAction.SHOW_BLOCK_ACTIONS">{{chatService.translations.acceptSubscriptionRequest}}</span>
 
                 <a *ngIf="subscriptionAction === SubscriptionAction.PENDING_REQUEST"
-                   (click)="acceptSubscriptionRequest($event)"
-                   href="#"
-                >{{chatService.translations.acceptSubscriptionRequest}}</a>
+                    (click)="acceptSubscriptionRequest($event)"
+                    href="#">{{chatService.translations.acceptSubscriptionRequest}}</a>
             </li>
 
             <li>
                 <span class="action-disabled"
-                      *ngIf="subscriptionAction === SubscriptionAction.SHOW_BLOCK_ACTIONS"
-                >{{chatService.translations.denySubscriptionRequest}}</span>
+                    *ngIf="subscriptionAction === SubscriptionAction.SHOW_BLOCK_ACTIONS">{{chatService.translations.denySubscriptionRequest}}</span>
 
                 <a *ngIf="subscriptionAction === SubscriptionAction.PENDING_REQUEST"
-                   (click)="denySubscriptionRequest($event)"
-                   href="#"
-                >{{chatService.translations.denySubscriptionRequest}}</a>
+                    (click)="denySubscriptionRequest($event)"
+                    href="#">{{chatService.translations.denySubscriptionRequest}}</a>
             </li>
         </ul>
         <ul class="deny-actions"

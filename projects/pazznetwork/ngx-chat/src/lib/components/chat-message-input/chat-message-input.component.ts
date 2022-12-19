@@ -20,7 +20,8 @@ import { CHAT_SERVICE_TOKEN, ChatService } from "../../services/chat-service";
 export class ChatMessageInputComponent implements OnInit {
   @Input()
   public recipient: Recipient;
-
+  @Input()
+  public Reply
   @Output()
   public messageSent = new EventEmitter<void>();
 
@@ -54,14 +55,19 @@ export class ChatMessageInputComponent implements OnInit {
     }
     debugger
     this.chatService.sendMessage(this.recipient,
-      `<div  class="messageItem">${this.messageItem}</div>` + this.message);
-    this.messageItem = ''
+      `<div  class="messageItem">${this.Reply}</div>` + this.message);
+    this.Reply = ''
     this.message = "";
-    this.messageSent.emit();
+    // this.messageSent.emit();
 
   }
 
   focus() {
     this.chatInput.nativeElement.focus();
   }
+  delete() {
+    debugger
+    this.Reply = ''
+  }
 }
+

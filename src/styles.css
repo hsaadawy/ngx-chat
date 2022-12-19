@@ -57,3 +57,12 @@ button {
   color: #fff !important;
   border-radius: 2px;
 }
+ngx-chat-message {
+  position: relative;
+}
+.chat-message--out .showMenuposition i {
+  display: none;
+}
+.chat-message--in .showMenuposition {
+  right: -15px !important;
+}
