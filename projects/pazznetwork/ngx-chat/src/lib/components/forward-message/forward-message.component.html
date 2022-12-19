@@ -1,0 +1,31 @@
+
+<div class="window" *ngIf="message"  style="overflow-y:scroll !important;">
+
+    <div  class="window-header">
+   
+        <div  class="window-close" (click)="closeClick.emit()">
+          x
+        </div>
+
+    </div>
+    <ng-container  class="window-content"  >
+            <div *ngIf="contacts" >
+                <div *ngFor="let  contact of  (contacts | async)" class="row">
+                    <input type="checkbox" (change)="selectReceiver(contact,$event)">
+                    <div class="roster-recipient-name" style="display:inline">
+                        {{contact.name}}
+                    </div>
+                
+                </div>
+        
+            </div>
+          
+
+     </ng-container>
+      <div>
+        <button type="button" (click)="forwordMessage()">Forword</button>
+       </div>
+ 
+</div>
+
+

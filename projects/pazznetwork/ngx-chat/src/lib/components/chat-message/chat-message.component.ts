@@ -8,6 +8,7 @@ import { XmppChatAdapter } from '../../services/adapters/xmpp/xmpp-chat-adapter.
 import { ChatContactClickHandler, CONTACT_CLICK_HANDLER_TOKEN } from '../../services/chat-contact-click-handler';
 import { CHAT_SERVICE_TOKEN, ChatService } from '../../services/chat-service';
 import { ReplyMessageEvent } from '../../events/reply-message-event';
+import { ForwardMessageEvent } from '../../events/forward-message-event';
 
 export const MAX_IMAGE_SIZE = 250 * 1024;
 
@@ -52,6 +53,7 @@ export class ChatMessageComponent implements OnInit {
         private httpClient: HttpClient,
         private eRef: ElementRef,
         @Inject(ReplyMessageEvent) public replyMessageEvent: ReplyMessageEvent,
+        @Inject(ForwardMessageEvent) public forwordMessageEvent: ForwardMessageEvent,
         @Inject(CONTACT_CLICK_HANDLER_TOKEN) @Optional() public contactClickHandler: ChatContactClickHandler
     ) {
         this.messageStatePlugin = this.chatService.getPlugin(MessageStatePlugin);
@@ -141,5 +143,9 @@ export class ChatMessageComponent implements OnInit {
         console.log(message);
         this.replyMessageEvent.changeReplyMessage(message);
 
+    }
+
+    forward(message: any) {
+        this.forwordMessageEvent.changeForwardMessage(   `<div  class="messageItem">forworded</div>` + message);
     }
 }

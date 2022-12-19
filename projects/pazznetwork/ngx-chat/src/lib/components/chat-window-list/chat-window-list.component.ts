@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
+import { ForwardMessageEvent } from '../../events/forward-message-event';
 import { ChatListStateService } from '../../services/chat-list-state.service';
 
 @Component({
@@ -23,8 +24,15 @@ export class ChatWindowListComponent {
 
     @Input()
     rosterState: string;
-
-    constructor(public chatListService: ChatListStateService) {
+    forwardMessage: string;
+    pseudoBool: boolean = false;
+    constructor(public chatListService: ChatListStateService, @Inject(ForwardMessageEvent) public forwardMessageEvent: ForwardMessageEvent)
+     {
+        this.forwardMessageEvent.ForwardMessageEmitter$.subscribe((item: string) => {
+            debugger;
+            this.forwardMessage = item;
+            this.pseudoBool= ! this.pseudoBool
+          })
     }
 
 }

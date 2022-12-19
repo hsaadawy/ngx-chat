@@ -1,12 +1,9 @@
 <div class="chat-list" [@rosterVisibility]="rosterState">
 
-    <ngx-chat-video-window
-            *ngFor="let track of (chatListService.openTracks$ | async)"
-            [track]="track">
-    </ngx-chat-video-window>
+        <ngx-chat-video-window *ngFor="let track of (chatListService.openTracks$ | async)" [track]="track">
+        </ngx-chat-video-window>
 
-    <ngx-chat-window
-            *ngFor="let chatWindowState of (chatListService.openChats$ | async)"
-            [chatWindowState]="chatWindowState"></ngx-chat-window>
-
+        <ngx-chat-window *ngFor="let chatWindowState of (chatListService.openChats$ | async)"
+                [chatWindowState]="chatWindowState"></ngx-chat-window>
+        <ngx-forward-message [message]="forwardMessage" [pseudoBool]="pseudoBool"></ngx-forward-message>
 </div>

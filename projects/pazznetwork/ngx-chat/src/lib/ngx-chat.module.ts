@@ -48,6 +48,8 @@ import { ChatMessageListRegistryService } from './services/chat-message-list-reg
 import { CHAT_SERVICE_TOKEN } from './services/chat-service';
 import { ContactFactoryService } from './services/contact-factory.service';
 import { LogService } from './services/log.service';
+import { ForwardMessageComponent } from './components/forward-message/forward-message.component';
+import { ForwardMessageEvent } from './events/forward-message-event';
 
 
 @NgModule({
@@ -74,7 +76,8 @@ import { LogService } from './services/log.service';
         ChatWindowFrameComponent,
         ChatVideoWindowComponent,
         ChatAvatarComponent,
-        RosterRecipientComponent
+        RosterRecipientComponent,
+        ForwardMessageComponent
         
     ],
     exports: [
@@ -98,6 +101,7 @@ export class NgxChatModule {
                 ChatMessageListRegistryService,
                 ContactFactoryService,
                 ReplyMessageEvent,
+                ForwardMessageEvent,
                 LogService,
                 XmppChatConnectionService,
                 XmppClientFactoryService,

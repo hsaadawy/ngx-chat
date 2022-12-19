@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnDestroy, OnInit, Optional, ViewChild } from
 import { Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Direction, Message } from '../../core/message';
+import { ForwardMessageEvent } from '../../events/forward-message-event';
 import { HttpFileUploadPlugin } from '../../services/adapters/xmpp/plugins/http-file-upload.plugin';
 import { RoomMessage } from '../../services/adapters/xmpp/plugins/multi-user-chat.plugin';
 import { ChatContactClickHandler, CONTACT_CLICK_HANDLER_TOKEN } from '../../services/chat-contact-click-handler';
@@ -17,6 +18,8 @@ import { ChatMessageListComponent } from '../chat-message-list/chat-message-list
 })
 export class ChatWindowComponent implements OnInit, OnDestroy {
 
+
+
     @Input()
     public chatWindowState: ChatWindowState;
 
@@ -30,12 +33,15 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
     private readonly ngDestroy = new Subject<void>();
 
+
     constructor(
         @Inject(CHAT_SERVICE_TOKEN) readonly chatService: ChatService,
         private readonly chatListService: ChatListStateService,
         @Inject(CONTACT_CLICK_HANDLER_TOKEN) @Optional() readonly contactClickHandler: ChatContactClickHandler,
+     
     ) {
         this.httpFileUploadPlugin = this.chatService.getPlugin(HttpFileUploadPlugin);
+    
     }
 
     ngOnInit() {
