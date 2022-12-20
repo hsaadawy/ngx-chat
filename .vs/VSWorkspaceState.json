@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\projects",
+    "\\projects\\pazznetwork",
+    "\\projects\\pazznetwork\\ngx-chat",
+    "\\projects\\pazznetwork\\ngx-chat\\src",
+    "\\projects\\pazznetwork\\ngx-chat\\src\\lib",
+    "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components",
+    "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components\\chat-message",
+    "\\src",
+    "\\src\\app"
   ],
+  "SelectedNode": "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components\\chat-message\\chat-message.component.html",
   "PreviewInSolutionExplorer": false
 }
