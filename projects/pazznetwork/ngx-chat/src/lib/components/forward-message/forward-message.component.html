@@ -1,9 +1,9 @@
 
-<div class="window" *ngIf="message"  style="overflow-y:scroll !important;">
+<div class="window" *ngIf="message"   [id]="'forward-' + message" style="overflow-y:scroll !important;">
 
     <div  class="window-header">
    
-        <div  class="window-close" (click)="closeClick.emit()">
+        <div  class="window-close" (click)="fowardSent.emit()">
           x
         </div>
 

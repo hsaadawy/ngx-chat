@@ -31,8 +31,12 @@ export class ChatWindowListComponent {
         this.forwardMessageEvent.ForwardMessageEmitter$.subscribe((item: string) => {
             debugger;
             this.forwardMessage = item;
-            this.pseudoBool= ! this.pseudoBool
+            this.pseudoBool= true;
           })
     }
 
+    fowardSent()
+    {
+        this.pseudoBool= false;
+    }
 }
