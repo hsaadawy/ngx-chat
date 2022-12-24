@@ -53,10 +53,14 @@ export class ChatMessageInputComponent implements OnInit {
     if ($event) {
       $event.preventDefault();
     }
-    debugger
-    this.chatService.sendMessage(this.recipient,
-      `<div  class="messageItem">${this.Reply}</div>` + this.message);
-    this.Reply = ''
+    if (this.Reply != '') {
+      this.chatService.sendMessage(this.recipient,
+        `<div  class="messageItem">${this.Reply}</div>` + this.message);
+      this.Reply = ''
+    } else {
+      this.chatService.sendMessage(this.recipient, this.message);
+    }
+
     this.message = "";
     // this.messageSent.emit();
 

@@ -19,6 +19,10 @@ export const MAX_IMAGE_SIZE = 250 * 1024;
 })
 export class ChatMessageComponent implements OnInit {
 
+    showForward = false;
+    contacts;
+    selectedContact: Contact[] = [];
+    forwardMessage;
 
     @Output()
     public ReplySent = new EventEmitter<void>();
@@ -65,6 +69,9 @@ export class ChatMessageComponent implements OnInit {
 
     ngOnInit() {
         this.tryFindImageLink();
+        if (!this.contacts) {
+            this.contacts = this.chatService.contactsSubscribed$;
+        }
     }
 
     private tryFindImageLink() {
@@ -151,6 +158,24 @@ export class ChatMessageComponent implements OnInit {
     }
 
     forward(message: any) {
-        this.forwordMessageEvent.changeForwardMessage(   `<div  class="messageItem">forworded</div>` + message);
+        this.showForward = true
+        this.forwardMessage = message
+        // this.forwordMessageEvent.changeForwardMessage(`<div  class="messageItem">forworded</div>` + message);
+    }
+
+    selectReceiver(contact: Contact, event) {
+
+        if (event.target.checked) {
+            this.selectedContact.push(contact);
+        } else {
+            this.selectedContact = this.selectedContact.filter(x => x.jidBare.local != contact.jidBare.local)
+        }
+    }
+    forwordMessage() {
+
+        this.selectedContact.forEach((element, index) => {
+            this.chatService.sendMessage(element, `<div  class=""><i  style="font-family: 'Font Awesome 5 Pro' !important" class="fas fa-share"></i></div>` + this.forwardMessage);
+        });
+        this.showForward = false
     }
 }
