@@ -73,5 +73,14 @@ export class ChatMessageInputComponent implements OnInit {
     debugger
     this.Reply = ''
   }
+
+  toggled: boolean = false;
+messageEmoji: string = '';
+
+handleSelection(event) {
+  console.log(event.char);
+  this.messageEmoji += event.char;
+  this.message+= event.char;
+}
 }
 
