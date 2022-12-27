@@ -9,6 +9,7 @@ import { ChatContactClickHandler, CONTACT_CLICK_HANDLER_TOKEN } from '../../serv
 import { CHAT_SERVICE_TOKEN, ChatService } from '../../services/chat-service';
 import { ReplyMessageEvent } from '../../events/reply-message-event';
 import { ForwardMessageEvent } from '../../events/forward-message-event';
+import { IncomingMessage } from 'http';
 
 export const MAX_IMAGE_SIZE = 250 * 1024;
 
@@ -174,7 +175,11 @@ export class ChatMessageComponent implements OnInit {
     forwordMessage() {
 
         this.selectedContact.forEach((element, index) => {
-            this.chatService.sendMessage(element, `<div  class=""><i  style="font-family: 'Font Awesome 5 Pro' !important" class="fas fa-share"></i></div>` + this.forwardMessage);
+            if (this.forwardMessage.includes("fa-share")) {
+                this.chatService.sendMessage(element, this.forwardMessage);
+            } else {
+                this.chatService.sendMessage(element, `<div class=""><i  style="font-family: 'Font Awesome 5 Pro' !important" class="fas fa-share"></i></div>` + this.forwardMessage);
+            }
         });
         this.showForward = false
     }
