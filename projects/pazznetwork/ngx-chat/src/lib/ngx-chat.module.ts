@@ -50,7 +50,7 @@ import { ContactFactoryService } from './services/contact-factory.service';
 import { LogService } from './services/log.service';
 import { ForwardMessageComponent } from './components/forward-message/forward-message.component';
 import { ForwardMessageEvent } from './events/forward-message-event';
-
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
 
 @NgModule({
     imports: [
@@ -58,6 +58,7 @@ import { ForwardMessageEvent } from './events/forward-message-event';
         FormsModule,
         HttpClientModule,
         TextFieldModule,
+        NgxEmojiPickerModule.forRoot()
     ],
     declarations: [
         ChatComponent,

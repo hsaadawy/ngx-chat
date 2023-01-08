@@ -42,6 +42,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   readonly httpFileUploadPlugin: HttpFileUploadPlugin;
 
   private readonly ngDestroy = new Subject<void>();
+  showEmojiPicker: boolean;
 
   constructor(
     @Inject(CHAT_SERVICE_TOKEN) readonly chatService: ChatService,
@@ -114,6 +115,15 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   newReply(e) {
     this.ReplyString = e
   }
+
+  openEmojiPopup()
+  {
+    this.showEmojiPicker= !this.showEmojiPicker
+  }
+
+
+
+
 }
 
 export interface ChatAction {

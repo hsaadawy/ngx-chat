@@ -5,5 +5,5 @@
 
         <ngx-chat-window *ngFor="let chatWindowState of (chatListService.openChats$ | async)"
                 [chatWindowState]="chatWindowState"></ngx-chat-window>
-        <ngx-forward-message [message]="forwardMessage" [pseudoBool]="pseudoBool"></ngx-forward-message>
+        <ngx-forward-message [message]="forwardMessage" [pseudoBool]="pseudoBool" (fowardSent)="fowardSent()"></ngx-forward-message>
 </div>

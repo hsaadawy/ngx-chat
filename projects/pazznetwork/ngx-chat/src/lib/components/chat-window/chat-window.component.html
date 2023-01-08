@@ -36,11 +36,17 @@
                 <div *ngFor="let action of chatService.chatActions" (click)="onActionClick(action)" class="chat-action"
                     [ngClass]="action.cssClass" [innerHTML]="action.html">
                 </div>
+               
+                <!--   <div  class="chat-action">
+                    <i class="fas fa-smile" (click)="openEmojiPopup()" ></i>
+                </div> -->
             </div>
         </div>
     </ngx-chat-filedrop>
    
 </ngx-chat-window-frame>
+<!-- <emoji-mart *ngIf="showEmojiPicker" class="emoji-mart" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart> -->
+
 
 
 

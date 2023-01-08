@@ -12,6 +12,8 @@ export class ForwardMessageComponent implements OnInit {
   @Output()
     closeClick = new EventEmitter<void>();
 
+ @Output()fowardSent = new EventEmitter<void>();
+
 
   @Input()
   set pseudoBool(val: boolean) { 
@@ -53,7 +55,8 @@ export class ForwardMessageComponent implements OnInit {
       if(index ===this.selectedContact.length-1 )
       {
         this.closeClick.emit()
-        this.message=null;;
+        this.message=null;
+        this.fowardSent.emit()
       }
     
     });

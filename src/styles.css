@@ -60,8 +60,8 @@ button {
 ngx-chat-message {
   position: relative;
 }
-.chat-message--out .showMenuposition i {
- left: -15px !important;
+.chat-message--out .showMenuposition {
+  margin-left: -15px !important;
 }
 .chat-message--in .showMenuposition {
   right: -15px !important;
