@@ -7,10 +7,7 @@
     "\\projects\\pazznetwork\\ngx-chat\\src",
     "\\projects\\pazznetwork\\ngx-chat\\src\\lib",
     "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components",
-    "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components\\chat-message",
-    "\\src",
-    "\\src\\app"
+    "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components\\chat-window"
   ],
-  "SelectedNode": "\\projects\\pazznetwork\\ngx-chat\\src\\lib\\components\\chat-message\\chat-message.component.html",
   "PreviewInSolutionExplorer": false
 }
