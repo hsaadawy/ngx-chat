@@ -66,3 +66,6 @@ ngx-chat-message {
 .chat-message--in .showMenuposition {
   right: -15px !important;
 }
+emoji-picker{
+  transform: translate(-210.011px, -344.682px) !important;
+}

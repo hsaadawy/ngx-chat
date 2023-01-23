@@ -43,6 +43,8 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
   private readonly ngDestroy = new Subject<void>();
   showEmojiPicker: boolean;
+  toggled: boolean = false;
+  messageEmoji: string = '';
 
   constructor(
     @Inject(CHAT_SERVICE_TOKEN) readonly chatService: ChatService,
@@ -83,6 +85,13 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.messageInput.onSendMessage();
+  }
+
+
+  handleSelection(event) {
+    console.log(event.char);
+    this.messageEmoji += event.char;
+    this.messageInput.message+= event.char;
   }
 
   afterSendMessage() {
