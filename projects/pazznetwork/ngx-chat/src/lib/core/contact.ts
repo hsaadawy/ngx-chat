@@ -93,7 +93,7 @@ export class Contact {
       name: "URL",
     };
     let credentials= this.chatUserName+":"+this.chatPassword
-    debugger;
+    
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export class Contact {
         httpOptions
       )
       .subscribe((result:any) => {
-        debugger
+        
         this.avatar =result.content;
       });
 

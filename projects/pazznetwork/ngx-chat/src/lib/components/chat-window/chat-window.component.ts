@@ -42,8 +42,9 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   readonly httpFileUploadPlugin: HttpFileUploadPlugin;
 
   private readonly ngDestroy = new Subject<void>();
+  
   showEmojiPicker: boolean;
-
+  
   constructor(
     @Inject(CHAT_SERVICE_TOKEN) readonly chatService: ChatService,
     private readonly chatListService: ChatListStateService,
@@ -53,6 +54,9 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   ) {
     this.httpFileUploadPlugin =
       this.chatService.getPlugin(HttpFileUploadPlugin);
+      debugger;
+      
+   
   }
 
   ngOnInit() {
@@ -66,8 +70,11 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.chatWindowState.isCollapsed = false;
       });
+
   }
 
+
+ 
   ngOnDestroy() {
     this.ngDestroy.next();
     this.ngDestroy.complete();
