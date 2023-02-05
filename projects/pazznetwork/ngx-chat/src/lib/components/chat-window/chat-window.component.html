@@ -39,10 +39,17 @@
             <div class="chat-input-container">
                 <ngx-chat-message-input [Reply]="ReplyString" [recipient]="chatWindowState.recipient" 
                     (messageSent)="afterSendMessage()"></ngx-chat-message-input>
+               
                 <div *ngFor="let action of chatService.chatActions" (click)="onActionClick(action)" class="chat-action"
                     [ngClass]="action.cssClass" [innerHTML]="action.html">
                 </div>
-               
+                <div  class="chat-action">
+                    <i  class="fas fa-smile"
+                        (click)="toggled = !toggled" 
+                        [(emojiPickerIf)]="toggled"
+                        [emojiPickerDirection]=" 'top' || 'left' "
+                        (emojiPickerSelect)="handleSelection($event)"></i>
+                </div> 
                 <!--   <div  class="chat-action">
                     <i class="fas fa-smile" (click)="openEmojiPopup()" ></i>
                 </div> -->
