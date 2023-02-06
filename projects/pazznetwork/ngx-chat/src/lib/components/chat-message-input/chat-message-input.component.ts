@@ -201,7 +201,10 @@ export class ChatMessageInputComponent implements OnInit {
   private shareScreen(): void {
     debugger;
     // @ts-ignore
-    navigator.mediaDevices
+    const mediaDevices = navigator.mediaDevices as any;
+
+    // @ts-ignore
+    mediaDevices
       .getDisplayMedia({
         video: {
           cursor: "always",
@@ -290,9 +293,9 @@ export class ChatMessageInputComponent implements OnInit {
   toggled: boolean = false;
   messageEmoji: string = "";
 
-  handleSelection(event) {
-    console.log(event.char);
-    this.messageEmoji += event.char;
-    this.message += event.char;
-  }
+  // handleSelection(event) {
+  //   console.log(event.char);
+  //   this.messageEmoji += event.char;
+  //   this.message += event.char;
+  // }
 }
