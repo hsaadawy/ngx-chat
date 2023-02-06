@@ -51,6 +51,7 @@ import { LogService } from './services/log.service';
 import { ForwardMessageComponent } from './components/forward-message/forward-message.component';
 import { ForwardMessageEvent } from './events/forward-message-event';
 import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
+import { CallService } from './core/callService';
 
 @NgModule({
     imports: [
@@ -106,6 +107,7 @@ export class NgxChatModule {
                 LogService,
                 XmppChatConnectionService,
                 XmppClientFactoryService,
+                CallService,
                 {
                     provide: CHAT_SERVICE_TOKEN,
                     deps: [

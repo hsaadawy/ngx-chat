@@ -17,16 +17,5 @@ border-radius: 4px 4px 0 0;">
 <textarea class="chat-input" #chatInput [(ngModel)]="message" (keydown.enter)="onSendMessage($event)"
     cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
     placeholder="{{chatService.translations.placeholder}}"></textarea>
-<div style="width: 400px; height: 300px; border: 2px solid" id="remote-video"></div>
-
-<div style="width: 200px; height: 200px; border: 2px solid; float:right;" id="local-video"></div>
-<div>
-    <button (click)="connectVideo()">Video</button>
-    <button (click)="connectAudio()">Audio</button>
-    <button class="button" (click)="screenShare()">Screen share</button>
-    <button class="button" (click)="switchLocalCamera()">Swict Camera</button>
-    <button class="button" (click)="endcall()">End Call</button>
-
-</div>
 <i class="fas fa-smile chat-action" (click)="toggled = !toggled" style="color: black;" [(emojiPickerIf)]="toggled"
     [emojiPickerDirection]="'top'" (emojiPickerSelect)="handleSelection($event)">😄</i>

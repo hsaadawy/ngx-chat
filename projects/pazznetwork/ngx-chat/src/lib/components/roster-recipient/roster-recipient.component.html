@@ -7,7 +7,11 @@
     <div class="roster-recipient-name">
         {{recipient.name}}
     </div>
-
+    <div>
+        <button (click)="onConnectVideo()">Video</button>
+        |
+        <button (click)="onConnectAudio()">Audio</button>
+    </div>
     <div class="roster-recipient-status">
         <div class="unread-message-badge" *ngIf="(unreadCount$ | async) > 0">{{unreadCount$ | async}}</div>
         <ng-container *ngIf="presence$ | async as presence">
@@ -17,5 +21,6 @@
             </div>
         </ng-container>
     </div>
+    
 
 </div>

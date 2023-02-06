@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
+import { XmppChatConnectionService } from '../../public-api';
 import { Contact } from '../core/contact';
 import { Translations } from '../core/translations';
 import { defaultTranslations } from '../core/translations-default';
@@ -90,7 +91,9 @@ export class ChatComponent implements OnInit, OnChanges {
 
     constructor(
         @Inject(CHAT_SERVICE_TOKEN) private chatService: ChatService,
+        public chatConnectionService: XmppChatConnectionService
     ) {
+        
     }
 
     ngOnInit() {
