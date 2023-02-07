@@ -8,6 +8,7 @@ export class CallService
     private lazyStream: any;
     private localStream: any;
     currentCall: MediaConnection;
+    private peerList: Array<any> = [];
      peer: Peer;
     currentPeer: any;
     peerId: string;
@@ -17,7 +18,7 @@ export class CallService
     }
     init()
     {
-        this.peer = new Peer(this.chatConnectionService.userJid.local.toString());
+        this.peer = new Peer(this.chatConnectionService.userJid.local.toString(),{ key: "peerjs", debug: 3 });
         this.peer.on("call", (call) => {
             navigator.mediaDevices
               .getUserMedia({
@@ -26,16 +27,22 @@ export class CallService
               })
               .then((stream) => {
                 this.lazyStream = stream;
-                //if (confirm("some one call you , answer?")) {
+                if (confirm("some one call you , answer?")) {
+                  debugger;
                   call.answer(stream);
                   call.on("stream", (remoteStream) => {
-                    this.streamRemoteVideo(remoteStream);
-                    this.showLocalVideo();
-                    this.currentPeer = call.peerConnection;
+                    if (!this.peerList.includes(call.peer)) {
+                      debugger;
+                        this.streamRemoteVideo(remoteStream);
+                        this.showLocalVideo();
+                      this.currentPeer = call.peerConnection;
+                      this.peerList.push(call.peer);
+
+                    }
                   });
-                //} else {
-               //   call.close();
-               // }
+                } else {
+                 call.close();
+               }
               })
               .catch((err) => {
                 console.log(err + "Unable to get media");
@@ -55,6 +62,7 @@ export class CallService
           });
       }
       private streamLocalVideo(stream: any): void {
+        debugger;
         let video = document.querySelector("video");
         if (video === undefined || video === null) {
           video = document.createElement("video");
@@ -91,12 +99,20 @@ export class CallService
             const call = this.peer.call(id, stream);
             this.currentCall = call;
             call.on("stream", (remoteStream) => {
-              if (this.callIsudio) {
-                this.streamRemoteudio(stream);
-              } else {
-                this.streamRemoteVideo(remoteStream);
-              }
-              this.currentPeer = call.peerConnection;
+                if (!this.peerList.includes(call.peer)) {
+                    if(this.callIsudio)
+                    {
+                      this.streamRemoteudio(stream);
+                    }
+                    else
+                    {
+                      
+                      this.streamRemoteVideo(remoteStream);
+                      
+                    }
+                    this.currentPeer = call.peerConnection;
+                    this.peerList.push(call.peer);
+                  }
             });
           })
           .catch((err) => {
@@ -121,7 +137,6 @@ export class CallService
         video.classList.add("video-remote");
         video.srcObject = stream;
         video.play();
-    
         document.getElementById("remote-video").append(video);
       }
       screenShare(): void {
@@ -132,8 +147,7 @@ export class CallService
         
         // @ts-ignore
         const mediaDevices = navigator.mediaDevices as any;
-        mediaDevices.navigator.mediaDevices
-          .getDisplayMedia({
+        mediaDevices.getDisplayMedia({
             video: {
               cursor: "always",
             },
