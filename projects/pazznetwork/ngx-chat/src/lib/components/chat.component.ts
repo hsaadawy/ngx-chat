@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { XmppChatConnectionService } from '../../public-api';
+import { CallService } from '../core/callService';
 import { Contact } from '../core/contact';
 import { Translations } from '../core/translations';
 import { defaultTranslations } from '../core/translations-default';
@@ -91,7 +92,7 @@ export class ChatComponent implements OnInit, OnChanges {
 
     constructor(
         @Inject(CHAT_SERVICE_TOKEN) private chatService: ChatService,
-        public chatConnectionService: XmppChatConnectionService
+        public callService:CallService
     ) {
         
     }
@@ -128,6 +129,18 @@ export class ChatComponent implements OnInit, OnChanges {
         } else {
             document.body.classList.remove(rosterClass);
         }
+    }
+    onEndCall()
+    {
+        this.callService.endcall();
+    }
+    onMute()
+    {
+        this.callService.muteAudio();
+    }
+    onCameraOff()
+    {
+        this.callService.switchLocalCamera();
     }
 
 }
