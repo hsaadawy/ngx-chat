@@ -63,7 +63,8 @@ export class CallService
       }
       private streamLocalVideo(stream: any): void {
         debugger;
-        let video = document.querySelector("video");
+        let allVideosvideo = document.querySelectorAll("video");
+        let video = allVideosvideo[1];
         if (video === undefined || video === null) {
           video = document.createElement("video");
         }
