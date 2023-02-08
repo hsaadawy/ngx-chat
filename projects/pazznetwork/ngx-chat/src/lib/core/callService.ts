@@ -8,6 +8,7 @@ export class CallService
     private lazyStream: any;
     private localStream: any;
     currentCall: MediaConnection;
+    private peerList: Array<any> = [];
      peer: Peer;
     currentPeer: any;
     peerId: string;
@@ -29,9 +30,11 @@ export class CallService
                 //if (confirm("some one call you , answer?")) {
                   call.answer(stream);
                   call.on("stream", (remoteStream) => {
-                    this.streamRemoteVideo(remoteStream);
-                    this.showLocalVideo();
-                    this.currentPeer = call.peerConnection;
+                    if (!this.peerList.includes(call.peer)) {
+                        this.streamRemoteVideo(remoteStream);
+                      this.currentPeer = call.peerConnection;
+                      this.peerList.push(call.peer);
+                    }
                   });
                 //} else {
                //   call.close();
@@ -91,12 +94,19 @@ export class CallService
             const call = this.peer.call(id, stream);
             this.currentCall = call;
             call.on("stream", (remoteStream) => {
-              if (this.callIsudio) {
-                this.streamRemoteudio(stream);
-              } else {
-                this.streamRemoteVideo(remoteStream);
-              }
-              this.currentPeer = call.peerConnection;
+                if (!this.peerList.includes(call.peer)) {
+                    if(this.callIsudio)
+                    {
+                      this.streamRemoteudio(stream);
+                    }
+                    else
+                    {
+          
+                      this.streamRemoteVideo(remoteStream);
+                    }
+                    this.currentPeer = call.peerConnection;
+                    this.peerList.push(call.peer);
+                  }
             });
           })
           .catch((err) => {
@@ -121,7 +131,6 @@ export class CallService
         video.classList.add("video-remote");
         video.srcObject = stream;
         video.play();
-    
         document.getElementById("remote-video").append(video);
       }
       screenShare(): void {
