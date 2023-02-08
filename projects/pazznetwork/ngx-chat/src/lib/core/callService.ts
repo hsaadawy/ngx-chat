@@ -34,7 +34,7 @@ export class CallService
                     if (!this.peerList.includes(call.peer)) {
                       debugger;
                         this.streamRemoteVideo(remoteStream);
-                       // this.showLocalVideo();
+                        this.showLocalVideo();
                       this.currentPeer = call.peerConnection;
                       this.peerList.push(call.peer);
 
@@ -78,7 +78,7 @@ export class CallService
       connectVideo(peerId:any): void {
         debugger;    
         this.callPeer(peerId);
-        //this.showLocalVideo();
+        this.showLocalVideo();
       }
       connectAudio(peerid:any): void {
         debugger;

@@ -142,5 +142,8 @@ export class ChatComponent implements OnInit, OnChanges {
     {
         this.callService.switchLocalCamera();
     }
-
+    onShareScreen()
+    {
+        this.callService.screenShare();
+    }
 }

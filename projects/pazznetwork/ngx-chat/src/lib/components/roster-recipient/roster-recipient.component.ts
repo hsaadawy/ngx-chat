@@ -51,8 +51,5 @@ export class RosterRecipientComponent implements OnInit {
     {
         this.callService.connectAudio(this.recipient.jidBare.local.toString());
     }
-    onShareScreen()
-    {
-        this.callService.screenShare();
-    }
+    
 }
